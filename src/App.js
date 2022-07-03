@@ -6,10 +6,27 @@ import { FiSettings } from "react-icons/fi";
 import { TooltipComponent } from "@syncfusion/ej2-react-popups";
 
 import { Navbar, Footer, Sidebar, ThemeSettings } from "./components";
-import { Ecommerce, Orders, Calendar, Employees, Line, Stacked, Pyramid, Customers, Kanban, Area, Bar, Pie, Financial, ColorPicker, ColorMapping, Editor } from "./pages";
+import {
+	Ecommerce,
+	Orders,
+	Calendar,
+	Employees,
+	Line,
+	Stacked,
+	Pyramid,
+	Customers,
+	Kanban,
+	Area,
+	Bar,
+	Pie,
+	Financial,
+	ColorPicker,
+	ColorMapping,
+	Editor,
+} from "./pages";
 
 const App = () => {
-	const activeMenu = false;
+	const activeMenu = true;
 
 	return (
 		<div>
@@ -38,8 +55,9 @@ const App = () => {
 					)}
 					{/* Navbar */}
 					<div
-						className={`dark:bg-main-bg bg-main-bg min-h-screen w-full ${activeMenu ? "md:ml-72" : "flex-2"
-							}`}
+						className={`dark:bg-main-bg bg-main-bg min-h-screen w-full ${
+							activeMenu ? "md:ml-72" : "flex-2"
+						}`}
 					>
 						<nav className="fixed md:static bg-main-bg dark:bg-main-dark-bg navbar w-full">
 							<Navbar />
