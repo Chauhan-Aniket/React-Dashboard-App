@@ -37,16 +37,13 @@ const Sidebar = () => {
 						<div className="mt-10">
 							{links.map((item) => {
 								return (
-									<>
-										<div
-											key={item.title}
-											className="text-gray-400 m-3 mt-4 uppercase"
-										>
+									<div key={item.title}>
+										<div className="text-gray-400 m-3 mt-4 uppercase">
 											{item.title}
 										</div>
 										{item.links.map((link) => {
 											return (
-												<>
+												<div key={link.name}>
 													<NavLink
 														to={`/${link.name}`}
 														className={({ isActive }) =>
@@ -56,10 +53,10 @@ const Sidebar = () => {
 														{link.icon}
 														<span className="capitalize">{link.name}</span>
 													</NavLink>
-												</>
+												</div>
 											);
 										})}
-									</>
+									</div>
 								);
 							})}
 						</div>
