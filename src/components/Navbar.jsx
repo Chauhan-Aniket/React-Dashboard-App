@@ -20,8 +20,8 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => {
 				className="relative text-xl rounded-full p-3 hover:bg-light-gray"
 			>
 				<span
-					style={{ background: dotColor }}
-					className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2"
+					style={{ background: dotColor, width: "0.5rem", height: "0.5rem" }}
+					className="absolute inline-flex rounded-full right-2 top-2"
 				>
 					{icon}
 				</span>
@@ -31,7 +31,59 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => {
 };
 
 const Navbar = () => {
-	return <div>Navbar</div>;
+	const { activeMenu, setActiveMenu } = useStateContext();
+
+	return (
+		<div className="flex justify-between p-2 md:mx-6 relative">
+			<NavButton
+				title={"Menu"}
+				customFunc={() => setActiveMenu((prevActiveMenu) => !prevActiveMenu)}
+				icon={<AiOutlineMenu />}
+				color={"blue"}
+			/>
+
+			<div className="flex">
+				<NavButton
+					title={"Cart"}
+					customFunc={() => {}}
+					icon={<FiShoppingCart />}
+					color={"blue"}
+				/>
+				<NavButton
+					title={"Chat"}
+					customFunc={() => {}}
+					icon={<BsChatLeft />}
+					color={"blue"}
+					dotColor="yellow"
+				/>
+				<NavButton
+					title={"Notification"}
+					customFunc={() => {}}
+					icon={<RiNotification3Line />}
+					color={"blue"}
+					dotColor="yellow"
+				/>
+
+				<TooltipComponent content={"Profile"} position="BottomCenter">
+					<div
+						className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
+						onClick={() => {}}
+					>
+						<img
+							className="rounded-full"
+							src={avatar}
+							alt="User Avatar"
+							style={{ width: "2rem", height: "2rem" }}
+						/>
+						<p>
+							<span className="text-gray-400 font text-14">Hi,</span>{" "}
+							<span className="text-gray-400 font-bold text-16">John</span>
+						</p>
+					</div>
+				</TooltipComponent>
+			</div>
+		</div>
+	);
 };
 
 export default Navbar;
