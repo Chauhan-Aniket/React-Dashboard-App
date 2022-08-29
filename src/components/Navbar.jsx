@@ -31,7 +31,8 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => {
 };
 
 const Navbar = () => {
-	const { activeMenu, setActiveMenu } = useStateContext();
+	const { activeMenu, setActiveMenu, isClicked, setIsClicked, handleClick } =
+		useStateContext();
 
 	return (
 		<div className="flex justify-between p-2 md:mx-6 relative">
@@ -45,29 +46,30 @@ const Navbar = () => {
 			<div className="flex">
 				<NavButton
 					title={"Cart"}
-					customFunc={() => {}}
+					customFunc={() => handleClick("cart")}
 					icon={<FiShoppingCart />}
 					color={"blue"}
 				/>
 				<NavButton
 					title={"Chat"}
-					customFunc={() => {}}
+					customFunc={() => handleClick("chat")}
 					icon={<BsChatLeft />}
 					color={"blue"}
 					dotColor="yellow"
 				/>
 				<NavButton
 					title={"Notification"}
-					customFunc={() => {}}
+					customFunc={() => handleClick("notification")}
 					icon={<RiNotification3Line />}
 					color={"blue"}
 					dotColor="yellow"
 				/>
 
 				<TooltipComponent content={"Profile"} position="BottomCenter">
-					<div
+					<button
+						type="button"
 						className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
-						onClick={() => {}}
+						onClick={() => handleClick("userProfile")}
 					>
 						<img
 							className="rounded-full"
@@ -79,8 +81,14 @@ const Navbar = () => {
 							<span className="text-gray-400 font text-14">Hi,</span>{" "}
 							<span className="text-gray-400 font-bold text-16">John</span>
 						</p>
-					</div>
+						<MdKeyboardArrowDown className="text-gray-400 text-14" />
+					</button>
 				</TooltipComponent>
+
+				{isClicked.cart && <Cart />}
+				{isClicked.chat && <Chat />}
+				{isClicked.notification && <Notification />}
+				{isClicked.userProfile && <UserProfile />}
 			</div>
 		</div>
 	);
