@@ -9,11 +9,17 @@ import { links } from "../data/dummy";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
-	const { activeMenu, setActiveMenu } = useStateContext();
+	const { activeMenu, setActiveMenu, screenSize } = useStateContext();
 	const activeLink =
 		"flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-white m-2 bg-cyan-600";
 	const normalLink =
 		"flex items-center gap-5 pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2";
+
+	const handleCloseSideBar = () => {
+		if (activeMenu && screenSize <= 900) {
+			activeMenu(false);
+		}
+	};
 
 	return (
 		<>
@@ -24,7 +30,7 @@ const Sidebar = () => {
 							<Link
 								to="/"
 								className="items-center gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight dark:text-white text-slate-900"
-								onClick={() => setActiveMenu(false)}
+								onClick={handleCloseSideBar}
 							>
 								<SiShopware /> Shoppy
 							</Link>
@@ -55,6 +61,7 @@ const Sidebar = () => {
 														className={({ isActive }) =>
 															isActive ? activeLink : normalLink
 														}
+														onClick={() => handleCloseSideBar}
 													>
 														{link.icon}
 														<span className="capitalize">{link.name}</span>
